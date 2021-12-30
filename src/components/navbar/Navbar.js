@@ -20,28 +20,10 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useParams, useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
+import Main from "../main/Main";
 
 const drawerWidth = 200;
-
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -140,7 +122,7 @@ export default function Navbar() {
         </List>
       </Drawer>
 
-      <Main open={open}>
+      <Main open={open} drawerwidth={200}>
         <DrawerHeader />
         <Outlet />
       </Main>
