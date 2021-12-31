@@ -1,26 +1,30 @@
-import { IconButton, Drawer } from "@mui/material";
+import { IconButton, useTheme, Drawer } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import HeadNavBar from "./HeadBar";
 import ListSideBar from "./ListSideBar";
 
-const drawerWidth = 200;
+function Drawerbar(props) {
+  const theme = useTheme();
 
-export default function Drawerbar() {
+  const handleDrawerClose = () => {
+    props.onClick();
+  };
+
   return (
     <Drawer
       sx={{
-        width: drawerWidth,
+        width: props.drawerWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: props.drawerWidth,
           boxSizing: "border-box",
         },
       }}
       variant="persistent"
       anchor="left"
-      open={open}
+      open={props.open}
     >
       <HeadNavBar>
         <IconButton onClick={handleDrawerClose}>
@@ -36,3 +40,5 @@ export default function Drawerbar() {
     </Drawer>
   );
 }
+
+export default Drawerbar;

@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { IconButton, Box, useTheme, Drawer, CssBaseline } from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Outlet } from "react-router-dom";
+import { Box, CssBaseline } from "@mui/material";
 
 import Content from "../content/Content";
 import TopBar from "../topbar/Topbar";
 import HeadNavBar from "../navbar/HeadBar";
-import ListSideBar from "../navbar/ListSideBar";
 import TopToolBar from "../topbar/TopToolBar";
+import Drawerbar from "../navbar/DrawerBar";
+
 
 const drawerWidth = 200;
 
 export default function Main() {
-  const theme = useTheme();
   const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
@@ -32,31 +30,7 @@ export default function Main() {
         <TopToolBar onClick={handleDrawerOpen} open={open} />
       </TopBar>
 
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <HeadNavBar>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </HeadNavBar>
-
-        <ListSideBar />
-      </Drawer>
+      <Drawerbar onClick={handleDrawerClose} open={open} drawerWidth={drawerWidth}  />
 
       <Content open={open} drawerwidth={drawerWidth}>
         <HeadNavBar />
