@@ -1,55 +1,16 @@
 import { useState } from "react";
-import {
-  IconButton,
-  Box,
-  Toolbar,
-  Typography,
-  useTheme,
-  styled,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Drawer,
-  Divider,
-  CssBaseline,
-} from "@mui/material";
-import MuiAppBar from "@mui/material/AppBar";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton, Box, useTheme, Drawer, CssBaseline } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useNavigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
 import Main from "../main/Main";
+import TopBar from "../topbar/Topbar";
+import HeadNavBar from "./HeadBar";
+import ListSideBar from "./ListSideBar";
+import TopToolBar from "../topbar/TopToolBar";
 
 const drawerWidth = 200;
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
 
 export default function Navbar() {
   const theme = useTheme();
@@ -63,28 +24,13 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const navigate = useNavigate();
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <TopBar position="fixed" open={open} drawerwidth={200}>
+        <TopToolBar onClick={handleDrawerOpen} open={open} />
+      </TopBar>
 
       <Drawer
         sx={{
@@ -99,7 +45,7 @@ export default function Navbar() {
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        <HeadNavBar>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -107,23 +53,13 @@ export default function Navbar() {
               <ChevronRightIcon />
             )}
           </IconButton>
-        </DrawerHeader>
+        </HeadNavBar>
 
-        <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text} onClick={() => navigate(text)}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <ListSideBar />
       </Drawer>
 
-      <Main open={open} drawerwidth={200}>
-        <DrawerHeader />
+      <Main open={open} drawerwidth={drawerWidth}>
+        <HeadNavBar />
         <Outlet />
       </Main>
     </Box>
