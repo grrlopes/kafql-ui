@@ -8,7 +8,6 @@ import HeadNavBar from "../navbar/HeadBar";
 import TopToolBar from "../topbar/TopToolBar";
 import Drawerbar from "../navbar/DrawerBar";
 
-
 const drawerWidth = 200;
 
 export default function Main() {
@@ -23,14 +22,24 @@ export default function Main() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        boxShadow: 1,
+        borderRadius: 2,
+      }}
+    >
       <CssBaseline />
 
       <TopBar position="fixed" open={open} drawerwidth={200}>
         <TopToolBar onClick={handleDrawerOpen} open={open} />
       </TopBar>
 
-      <Drawerbar onClick={handleDrawerClose} open={open} drawerWidth={drawerWidth}  />
+      <Drawerbar
+        onClick={handleDrawerClose}
+        open={open}
+        drawerWidth={drawerWidth}
+      />
 
       <Content open={open} drawerwidth={drawerWidth}>
         <HeadNavBar />
