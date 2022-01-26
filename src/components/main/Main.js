@@ -26,12 +26,13 @@ export default function Main() {
       sx={{
         display: "flex",
         boxShadow: 1,
-        borderRadius: 2,
+        borderRadius: 9,
+        width: "100%",
       }}
     >
       <CssBaseline />
 
-      <TopBar position="fixed" open={open} drawerwidth={200}>
+      <TopBar position="fixed" open={open} drawerwidth={drawerWidth}>
         <TopToolBar onClick={handleDrawerOpen} open={open} />
       </TopBar>
 

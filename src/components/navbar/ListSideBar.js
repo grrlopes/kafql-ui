@@ -1,30 +1,33 @@
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import SatelliteIcon from "@mui/icons-material/SatelliteAltTwoTone";
+import TableViewRoundedIcon from "@mui/icons-material/TableViewRounded";
+import QuestionMarkRoundedIcon from "@mui/icons-material/QuestionMarkRounded";
 import { useNavigate } from "react-router-dom";
 
-function ListSideBar() {
+const IconList = (text) => {
+  switch (text) {
+    case "Table":
+      return <TableViewRoundedIcon />;
+    case "Stream":
+      return <SatelliteIcon />;
+    default:
+      <QuestionMarkRoundedIcon />;
+      break;
+  }
+};
+
+const ListSideBar = () => {
   const navigate = useNavigate();
 
   return (
-    <Divider>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts", "ddd"].map((text, index) => (
-          <ListItem button key={text} onClick={() => navigate(text)}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Divider>
+    <List>
+      {["Table", "Stream"].map((text, index) => (
+        <ListItem button key={text} onClick={() => navigate(text)}>
+          <ListItemIcon sx={{ minWidth: 44 }}> {IconList(text)} </ListItemIcon>
+          <ListItemText primary={text} />
+        </ListItem>
+      ))}
+    </List>
   );
 }
 

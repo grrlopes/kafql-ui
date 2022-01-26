@@ -9,8 +9,8 @@ import { ThemeProvider } from "@emotion/react";
 import { darkTheme } from "./theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Inbox from "./pages/inbox/Inbox";
-import Teste from "./pages/teste/Teste";
+import Table from "./pages/table/Table";
+import MainStream from "./pages/stream/MainTab"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,8 +19,8 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />}>
-              <Route path="inbox" element={<Inbox />} />
-              <Route path="drafts" element={<Teste />} />
+              <Route path="stream" element={<MainStream />} />
+              <Route path="table" element={<Table />} />
             </Route>
           </Routes>
         </BrowserRouter>
