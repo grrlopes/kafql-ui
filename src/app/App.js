@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import Main from "./components/main/Main";
+import Main from "../components/main/Main";
 
 function App() {
   return (

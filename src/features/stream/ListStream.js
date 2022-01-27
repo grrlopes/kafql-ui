@@ -1,7 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getStreamListAsync } from "../../features/stream/streamSlice";
+import { getStreamListAsync } from "./streamSlice";
 
 const ListStream = () => {
   const dispatch = useDispatch();
