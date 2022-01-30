@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@codemirror/basic-setup": "^0.19.1",
+    "@codemirror/commands": "^0.19.8",
+    "@codemirror/lang-sql": "^0.19.4",
+    "@codemirror/state": "^0.19.6",
+    "@codemirror/view": "^0.19.40",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
