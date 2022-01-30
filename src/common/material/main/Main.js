@@ -25,8 +25,8 @@ export default function Main() {
     <Box
       sx={{
         display: "flex",
-        boxShadow: 1,
-        borderRadius: 9,
+        boxShadow: 5,
+        borderRadius: 7,
         width: "100%",
       }}
     >

@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import ListStream from "./ListStream";
+import QueryEditor from "./QueryStream";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,7 +36,7 @@ function a11yProps(index) {
 }
 
 const MainTabs = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -53,7 +54,7 @@ const MainTabs = () => {
         <ListStream />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Create query
+        <QueryEditor />
       </TabPanel>
     </Box>
   );
