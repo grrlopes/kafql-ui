@@ -5,10 +5,9 @@ import { defaultKeymap, indentWithTab } from "@codemirror/commands";
 import { sql } from "@codemirror/lang-sql";
 import { Button, Stack } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addQueryStream } from "./streamSlice";
 import QueryError from "./QueryError";
-
 
 const QueryEditor = () => {
   const editor = useRef();
@@ -38,17 +37,19 @@ const QueryEditor = () => {
         onUpdate,
       ],
     });
-
     const view = new EditorView({ state, parent: editor.current });
-
     return () => {
       view.destroy();
     };
   }, []);
 
+  const queryErr = useSelector((state) =>
+    state.streamAdd.filter((data) => data.message !== "").pop()
+  );
+
   return (
     <div>
-      <QueryError />
+      {queryErr ? <QueryError error={queryErr} /> : <span></span>}
       <div ref={editor}></div>
       <Stack direction="row" spacing={1} paddingTop={2}>
         <Button

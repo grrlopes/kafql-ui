@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import streamReducer from "../features/stream/streamSlice";
+import {
+  streamListSlice,
+  streamAddSlice,
+} from "../features/stream/streamSlice";
 
 export const store = configureStore({
   reducer: {
-    stream: streamReducer,
+    streamList: streamListSlice.reducer,
+    streamAdd: streamAddSlice.reducer,
   },
 });

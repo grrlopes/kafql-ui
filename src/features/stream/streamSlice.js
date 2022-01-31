@@ -15,14 +15,8 @@ const getStreamListAsync = createAsyncThunk(
       }),
     });
     if (response.ok) {
-      const streams = await response.json();
-      const resp = streams.map((data) => {
-        if (data.streams.length) {
-          return data.streams;
-        }
-        return data.streams;
-      });
-      return resp;
+      const respStream = await response.json();
+      return { respStream };
     }
   }
 );
@@ -52,8 +46,8 @@ const addQueryStream = createAsyncThunk(
   }
 );
 
-const streamSlice = createSlice({
-  name: "stream",
+const streamListSlice = createSlice({
+  name: "streamList",
   initialState: [],
   reducers: {},
   extraReducers: {
@@ -61,15 +55,21 @@ const streamSlice = createSlice({
       console.info("fetching data...");
     },
     [getStreamListAsync.fulfilled]: (state, action) => {
-      console.info("fetched data successfully!", action.payload);
-      return action.payload;
-    },
-    [addQueryStream.fulfilled]: (state, action) => {
-
+      console.info("fetched data successfully!");
+      return action.payload.respStream;
     },
   },
 });
 
-export { getStreamListAsync, addQueryStream };
+const streamAddSlice = createSlice({
+  name: "streamAdd",
+  initialState: [],
+  reducers: {},
+  extraReducers: {
+    [addQueryStream.fulfilled]: (state, action) => {
+      state.push(action.payload.querystream);
+    },
+  },
+});
 
-export default streamSlice.reducer;
+export { getStreamListAsync, addQueryStream, streamListSlice, streamAddSlice };

@@ -6,23 +6,26 @@ import { getStreamListAsync } from "./streamSlice";
 const ListStream = () => {
   const dispatch = useDispatch();
 
-  const streams = useSelector((state) => state.stream);
-
+  const streams = useSelector((state) => state.streamList);
   useEffect(() => {
     dispatch(getStreamListAsync());
   }, [dispatch]);
 
-  const data = streams.map((data, index) => {
-    return {
-      id: index,
-      Name: data[index].name,
-      Topic: data[index].topic,
-      Type: data[index].type,
-      valueFormat: data[index].valueFormat,
-      isWindowed: data[index].isWindowed,
-      keyFormat: data[index].keyFormat,
-    };
-  });
+  const listStrem = streams.map(data => {
+    return data.streams[0]
+  })
+
+  const data = listStrem.map((data, index) => {
+      return {
+        id: index,
+        Name: data.name,
+        Topic: data.topic,
+        Type: data.type,
+        valueFormat: data.valueFormat,
+        isWindowed: data.isWindowed,
+        keyFormat: data.keyFormat,
+      };
+    });
 
   return (
     <div style={{ height: 400, width: "100%" }}>
