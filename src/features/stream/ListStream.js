@@ -11,21 +11,21 @@ const ListStream = () => {
     dispatch(getStreamListAsync());
   }, [dispatch]);
 
-  const listStrem = streams.map(data => {
-    return data.streams[0]
-  })
+  const listStrem = streams.map((data) => {
+    return data.streams[0];
+  });
 
   const data = listStrem.map((data, index) => {
-      return {
-        id: index,
-        Name: data.name,
-        Topic: data.topic,
-        Type: data.type,
-        valueFormat: data.valueFormat,
-        isWindowed: data.isWindowed,
-        keyFormat: data.keyFormat,
-      };
-    });
+    return {
+      id: index,
+      Name: data.name,
+      Topic: data.topic,
+      Type: data.type,
+      valueFormat: data.valueFormat,
+      isWindowed: data.isWindowed,
+      keyFormat: data.keyFormat,
+    };
+  });
 
   return (
     <div style={{ height: 400, width: "100%" }}>
