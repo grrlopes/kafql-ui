@@ -9,7 +9,7 @@ import { ThemeProvider } from "@emotion/react";
 import { darkTheme } from "./style/theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Table from "./features/table/Table";
+import MainTable from "./features/table/MainTab";
 import MainStream from "./features/stream/MainTab"
 
 ReactDOM.render(
@@ -20,7 +20,7 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />}>
               <Route path="stream" element={<MainStream />} />
-              <Route path="table" element={<Table />} />
+              <Route path="table" element={<MainTable />} />
             </Route>
           </Routes>
         </BrowserRouter>
